@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Bhvtools.OrderingClient.ViewModels"
+             xmlns:views="clr-namespace:Bhvtools.OrderingClient.Views"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="200"
+             x:DataType="viewModels:CatalogCategoryViewModel"
+             Classes.selected="{Binding $self.IsSelected}"
+             x:Class="Bhvtools.OrderingClient.Views.CatalogCategoryButton">
+    <UserControl.Styles>
+        <Style Selector="views|CatalogCategoryButton">
+            <Setter Property="Background" Value="{Binding Background}" />
+            <Setter Property="Foreground" Value="{Binding Foreground}" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Padding" Value="5 3" />
+        </Style>
+        <Style Selector="views|CatalogCategoryButton.selected">
+            <Setter Property="BorderBrush" Value="Red" />
+        </Style>
+    </UserControl.Styles>
+    <StackPanel Orientation="Vertical">
+        <TextBlock Text="{Binding Name}" />
+    </StackPanel>
+</UserControl>

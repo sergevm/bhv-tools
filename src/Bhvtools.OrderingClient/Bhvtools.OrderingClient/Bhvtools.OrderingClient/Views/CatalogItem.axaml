@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Bhvtools.OrderingClient.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="viewModels:CatalogItemViewModel"
+             x:Class="Bhvtools.OrderingClient.Views.CatalogItem">
+    <DockPanel LastChildFill="True">
+        <Button DockPanel.Dock="Right" Content="+" Padding="5" Margin="2" CornerRadius="10" Width="40" HorizontalContentAlignment="Center"
+                Foreground="{Binding Foreground}" Background="{Binding Background}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <Button DockPanel.Dock="Right" Content="-" Padding="5" Margin="2" CornerRadius="10" Width="40" HorizontalContentAlignment="Center"
+                Foreground="{Binding Foreground}" Background="{Binding Background}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="0 0 60 0" HorizontalAlignment="Left">
+            <TextBlock VerticalAlignment="Bottom" Text="{Binding Name}" HorizontalAlignment="Left" Margin="0 0 15 0"/>
+            <TextBlock VerticalAlignment="Bottom" Text="{Binding UnitPrice, StringFormat=' ({0}&#8364;)'}" FontSize="10" HorizontalAlignment="Left" />
+        </StackPanel>
+    </DockPanel>
+</UserControl>

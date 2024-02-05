@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:Bhvtools.OrderingClient.Views"
+             xmlns:viewModels="clr-namespace:Bhvtools.OrderingClient.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="viewModels:CatalogCategoryViewModel"
+             x:Class="Bhvtools.OrderingClient.Views.CatalogItems">
+    <UserControl.Styles>
+        <Style Selector="views|CatalogItem">
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+    </UserControl.Styles>
+    <Border>
+        <ItemsControl ItemsSource="{Binding Items}" HorizontalAlignment="Left">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="viewModels:CatalogItemViewModel">
+                    <views:CatalogItem DataContext="{Binding}" Padding="15 0" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Border>
+</UserControl>

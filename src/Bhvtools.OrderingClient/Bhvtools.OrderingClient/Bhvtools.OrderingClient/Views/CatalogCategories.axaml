@@ -1,0 +1,46 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:Bhvtools.OrderingClient.Views"
+             xmlns:viewModels="clr-namespace:Bhvtools.OrderingClient.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="viewModels:CatalogViewModel"
+             x:Class="Bhvtools.OrderingClient.Views.CatalogCategories">
+    <UserControl.Styles>
+        <Style Selector="views|CatalogCategoryButton">
+            <Setter Property="Margin" Value="0" />
+        </Style>
+        <Style Selector="views|CatalogCategoryButton:pointerover">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="ListBoxItem">
+            <Setter Property="Padding" Value="5 3" />
+            <Setter Property="Margin" Value="2" />
+        </Style>
+        <Style Selector="ListBoxItem:selected /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+    </UserControl.Styles>
+    <Border>
+        <DockPanel LastChildFill="True">
+            <ListBox ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory}"
+                     SelectionMode="Single">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="viewModels:CatalogCategoryViewModel">
+                        <views:CatalogCategoryButton IsSelected="{Binding IsSelected, RelativeSource={RelativeSource Mode=FindAncestor,
+                         AncestorType=ListBoxItem}, Mode=TwoWay}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+    </Border>
+</UserControl>
