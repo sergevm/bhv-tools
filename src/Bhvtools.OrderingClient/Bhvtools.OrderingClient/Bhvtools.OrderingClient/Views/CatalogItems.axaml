@@ -5,7 +5,7 @@
              xmlns:views="clr-namespace:Bhvtools.OrderingClient.Views"
              xmlns:viewModels="clr-namespace:Bhvtools.OrderingClient.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:DataType="viewModels:CatalogCategoryViewModel"
+             x:DataType="viewModels:OrderCategoryViewModel"
              x:Class="Bhvtools.OrderingClient.Views.CatalogItems">
     <UserControl.Styles>
         <Style Selector="views|CatalogItem">
@@ -13,10 +13,13 @@
         </Style>
     </UserControl.Styles>
     <Border>
-        <ItemsControl ItemsSource="{Binding Items}" HorizontalAlignment="Left">
+        <ItemsControl ItemsSource="{Binding $parent[views:CatalogItems].Category.Items}">
             <ItemsControl.ItemTemplate>
-                <DataTemplate DataType="viewModels:CatalogItemViewModel">
-                    <views:CatalogItem DataContext="{Binding}" Padding="15 0" />
+                <DataTemplate DataType="viewModels:OrderCatalogItemViewModel">
+                    <views:CatalogItem DataContext="{Binding}"
+                                       AddCommand="{Binding AddCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=views:CatalogItems}}" 
+                                       RemoveCommand="{Binding RemoveCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=views:CatalogItems}}" 
+                                       Padding="15 0" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

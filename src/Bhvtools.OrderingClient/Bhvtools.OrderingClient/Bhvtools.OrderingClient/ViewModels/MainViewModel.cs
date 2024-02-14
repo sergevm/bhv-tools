@@ -6,7 +6,9 @@ namespace Bhvtools.OrderingClient.ViewModels;
 
 public partial class MainViewModel : ObservableObject
 {
-    [ObservableProperty] private EditOrderViewModel editOrderViewModel = new(new CatalogViewModel(new Catalog([
+    [ObservableProperty] private EditOrderViewModel editOrderViewModel = new(new Order(), new OrderCategoriesViewModel(Catalog));
+
+    private static readonly Catalog Catalog = new([
         new CatalogCategory("Frisdrank",
             Brushes.LightBlue,
             Brushes.Indigo,
@@ -46,5 +48,5 @@ public partial class MainViewModel : ObservableObject
                 new CatalogItem("Witte wijn", 3m),
                 new CatalogItem("Cava", 3m)
             ]),
-    ])));
+    ]);
 }

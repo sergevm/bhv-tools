@@ -5,7 +5,7 @@
              xmlns:views="clr-namespace:Bhvtools.OrderingClient.Views"
              xmlns:viewModels="clr-namespace:Bhvtools.OrderingClient.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:DataType="viewModels:CatalogViewModel"
+             x:DataType="viewModels:OrderCategoriesViewModel"
              x:Class="Bhvtools.OrderingClient.Views.CatalogCategories">
     <UserControl.Styles>
         <Style Selector="views|CatalogCategoryButton">
@@ -35,7 +35,7 @@
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
                 <ListBox.ItemTemplate>
-                    <DataTemplate DataType="viewModels:CatalogCategoryViewModel">
+                    <DataTemplate DataType="viewModels:OrderCategoryViewModel">
                         <views:CatalogCategoryButton IsSelected="{Binding IsSelected, RelativeSource={RelativeSource Mode=FindAncestor,
                          AncestorType=ListBoxItem}, Mode=TwoWay}" />
                     </DataTemplate>

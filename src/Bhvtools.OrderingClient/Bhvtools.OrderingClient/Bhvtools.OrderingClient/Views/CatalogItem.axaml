@@ -3,14 +3,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:Bhvtools.OrderingClient.ViewModels"
+             xmlns:views="clr-namespace:Bhvtools.OrderingClient.Views"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:DataType="viewModels:CatalogItemViewModel"
+             x:DataType="viewModels:OrderCatalogItemViewModel"
              x:Class="Bhvtools.OrderingClient.Views.CatalogItem">
     <DockPanel LastChildFill="True">
         <Button DockPanel.Dock="Right" Content="+" Padding="5" Margin="2" CornerRadius="10" Width="40" HorizontalContentAlignment="Center"
+                Command="{Binding AddCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=views:CatalogItem}}" CommandParameter="{Binding}"
                 Foreground="{Binding Foreground}" Background="{Binding Background}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <Button DockPanel.Dock="Right" Content="-" Padding="5" Margin="2" CornerRadius="10" Width="40" HorizontalContentAlignment="Center"
+                Command="{Binding RemoveCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=views:CatalogItem}}" CommandParameter="{Binding}"
                 Foreground="{Binding Foreground}" Background="{Binding Background}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock DockPanel.Dock="Left" Text="{Binding Count, StringFormat='0 x'}" VerticalAlignment="Center" Margin="0 0 10 0" />
         <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="0 0 60 0" HorizontalAlignment="Left">
             <TextBlock VerticalAlignment="Bottom" Text="{Binding Name}" HorizontalAlignment="Left" Margin="0 0 15 0"/>
             <TextBlock VerticalAlignment="Bottom" Text="{Binding UnitPrice, StringFormat=' ({0}&#8364;)'}" FontSize="10" HorizontalAlignment="Left" />

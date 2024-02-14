@@ -10,51 +10,50 @@ public record CatalogCategory(string Name, IBrush BackgroundBrush, IBrush Foregr
 
 public record CatalogItem(string Name, decimal UnitPrice);
 
-public class OrderItem
+public class OrderItem(CatalogItem catalogItem)
 {
-    public CatalogItem CatalogItem { get; set; } = null!;
+    public CatalogItem CatalogItem { get; init; } = catalogItem;
     public int Count { get; set; }
 }
 
 public class Order
 {
-    public List<OrderItem> Items { get; private set; } = [];
+    public List<OrderItem> Items { get; } = [];
 
-    public decimal Add(CatalogItem item, int count)
+    public OrderItem Add(CatalogItem item, int? count = null)
     {
-        var existing = Items.SingleOrDefault(i => i.CatalogItem == item);
-        if (existing != null)
+        var orderItem = Items.SingleOrDefault(i => i.CatalogItem == item);
+        if (orderItem != null)
         {
-            existing.Count += count;
+            orderItem.Count += count ?? 1;
         }
         else
         {
-            Items.Add(new OrderItem { CatalogItem = item, Count = count });
+            orderItem = new OrderItem(item) { Count = count ?? 1 };
+            Items.Add(orderItem);
         }
 
-        return CalculateTotal();
+        return orderItem;
     }
 
-    public decimal Remove(CatalogItem item)
+    public OrderItem? Remove(CatalogItem item)
     {
-        var existing = Items.SingleOrDefault(i => i.CatalogItem == item);
-        if (existing != null)
+        var orderItem = Items.SingleOrDefault(i => i.CatalogItem == item);
+        if (orderItem == null)
         {
-            if (existing.Count > 1)
-            {
-                existing.Count--;
-            }
-            else
-            {
-                Items.Remove(existing);
-            }
+            orderItem = new OrderItem(item) { Count = 0 };
+            Items.Add(orderItem);
         }
 
-        return CalculateTotal();
-    }
+        if (orderItem.Count > 0)
+        {
+            orderItem.Count--;
+        }
+        else
+        {
+            Items.Remove(orderItem);
+        }
 
-    private decimal CalculateTotal()
-    {
-        return Items.Sum(i => i.CatalogItem.UnitPrice * i.Count);
+        return orderItem;
     }
 }

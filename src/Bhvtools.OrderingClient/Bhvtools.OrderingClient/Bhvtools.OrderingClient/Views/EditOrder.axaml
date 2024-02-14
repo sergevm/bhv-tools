@@ -6,11 +6,14 @@
              xmlns:viewModels="clr-namespace:Bhvtools.OrderingClient.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="viewModels:EditOrderViewModel"
+             x:Name="EditOrderView"
              x:Class="Bhvtools.OrderingClient.Views.EditOrder">
     <Border>
         <DockPanel LastChildFill="True">
-            <views:CatalogCategories DockPanel.Dock="Top" DataContext="{Binding Catalog}"/>
-            <views:CatalogItems DataContext="{Binding Catalog.SelectedCategory}" />
+            <views:CatalogCategories DockPanel.Dock="Top" DataContext="{Binding OrderCategories}" />
+            <views:CatalogItems Category="{Binding OrderCategories.SelectedCategory}" 
+                                AddCommand="{Binding AddItemCommand}" 
+                                RemoveCommand="{Binding RemoveItemCommand}"/>
         </DockPanel>
     </Border>
 </UserControl>
